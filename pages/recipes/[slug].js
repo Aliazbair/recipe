@@ -31,6 +31,15 @@ export async function getStaticProps({ params }) {
     content_type: 'recipe',
     'fields.slug': params.slug,
   })
+  // check the length of data
+  if(!items.length){
+    return{
+      redirect:{
+        destination:'/',
+        permanent:false
+      }
+    }
+  }
   return {
     props: {
       recipe: items[0],
